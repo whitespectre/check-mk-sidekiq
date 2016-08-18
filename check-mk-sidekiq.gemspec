@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'check-mk-sidekiq'
-  s.version = '0.1.0'
+  s.version = '0.2.0'
   s.licenses = ['MIT']
   s.summary = 'CheckMK agent to watch for Sidekiq stats'
   s.summary = 'CheckMK agent to watch for Sidekiq stats'
