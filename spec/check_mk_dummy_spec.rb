@@ -8,7 +8,7 @@ describe CheckMK::Agents::DummyAgent do
 
   its(:name) { should eq('dummy_agent') }
 
-  context '#initialize' do
+  context '#initialize (override name)' do
     subject { CheckMK::Agents::DummyAgent.new(name: 'foobar') }
     its(:name) { should eq('foobar') }
   end
