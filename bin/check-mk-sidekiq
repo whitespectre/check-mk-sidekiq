@@ -1,6 +1,31 @@
 #!/usr/bin/env ruby
 
+require 'optparse'
+require 'sidekiq'
 require 'check_mk/agents/sidekiq'
+
+
+options = {}
+OptionParser.new do |opt|
+  opt.on('-u', '--url REDIS_URL', 'Redis URL to use') { |o| options[:url] = o }
+  opt.on('-s', '--sentinels sentinel1,sentinel2,sentinel3', Array, 'List of Redis Sentinel addresses (optional)') do |list|
+    options[:sentinels] = list
+  end
+end.parse!
+
+if options[:url]
+  config = {
+    url: options[:url]
+  }
+
+  if options[:sentinels]
+    config[:sentinels] = options[:sentinels].map {|h| {host:h, port: 26379} }
+  end
+
+  Sidekiq.configure_client do |cfg|
+    cfg.redis = config
+  end
+end
 
 agent = CheckMK::Agents::Sidekiq.new
 
