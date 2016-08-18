@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require 'check_mk/agents/sidekiq'
+
+agent = CheckMK::Agents::Sidekiq.new
+
+puts agent.output
