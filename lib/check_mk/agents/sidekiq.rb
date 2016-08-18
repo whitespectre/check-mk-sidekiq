@@ -20,11 +20,11 @@ module CheckMK
       private
 
       def sidekiq_workers
-        @workers ||= ::Sidekiq::Workers.new
+        ::Sidekiq::Workers.new
       end
 
       def sidekiq_stats
-        @stats ||= ::Sidekiq::Stats.new
+        ::Sidekiq::Stats.new
       end
 
     end
