@@ -13,15 +13,10 @@ module CheckMK
           result[stat] = sidekiq_stats.send(stat.to_sym)
         end
 
-        result['active_workers'] = sidekiq_workers.size
         result
       end
 
       private
-
-      def sidekiq_workers
-        ::Sidekiq::Workers.new
-      end
 
       def sidekiq_stats
         ::Sidekiq::Stats.new
